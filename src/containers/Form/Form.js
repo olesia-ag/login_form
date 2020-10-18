@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { updateObject, checkValidity, checkMatch } from '../../utility';
-import { useHistory } from "react-router";
-
+import React, { useState } from 'react';
+import { checkValidity, checkMatch } from '../../utility';
+import { useHistory } from 'react-router';
 
 const Form = () => {
 	const history = useHistory();
@@ -52,7 +51,6 @@ const Form = () => {
 		passwordError: '',
 		repeatPasswordError: '',
 	});
-	const [passwordHidden, setPasswordHidden] = useState(true);
 
 	const inputChangedHandler = (event) => {
 		const property = event.target.name;
@@ -77,6 +75,9 @@ const Form = () => {
 				setRepeatPassword((prev) => {
 					return { ...prev, value, touched: true };
 				});
+				break;
+			default:
+				console.warn('unhandled input name!');
 				break;
 		}
 	};
@@ -118,33 +119,37 @@ const Form = () => {
 		if (checkValidFields()) {
 			history.push({
 				pathname: '/success',
-				state: { name: name.value, email: email.value, password: password.value }
-			})
+				state: {
+					name: name.value,
+					email: email.value,
+					password: password.value,
+				},
+			});
 		} else {
 			setFormInvalid(true);
 		}
 	};
 
 	let displayError = null;
-	let displaySuccess = null;
 
-		if (formInvalid) {
-			const arrayOfErrors = [];
-			for (const property in errorMessages) {
-				arrayOfErrors.push(errorMessages[property]);
-			}
-			displayError = (
-				<div>
-					<h5>There was a problem</h5>
-					<ul>
-						{arrayOfErrors.map((msg) => {
-							if (msg.length) return <li key={msg}>{msg}</li>;
-						})}
-					</ul>
-				</div>
-			);
-
+	if (formInvalid) {
+		const arrayOfErrors = [];
+		for (const property in errorMessages) {
+			arrayOfErrors.push(errorMessages[property]);
 		}
+		displayError = (
+			<div>
+				<h5>There was a problem</h5>
+				<ul>
+					{arrayOfErrors.map((msg) => {
+						if (msg.length) {
+							return <li key={msg}>{msg}</li>;
+						}
+					})}
+				</ul>
+			</div>
+		);
+	}
 
 	return (
 		<div>

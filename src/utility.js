@@ -1,9 +1,3 @@
-export const updateObject = (oldObject, updateObject) => {
-  return {
-      ...oldObject,
-      ...updateObject
-  }
-}
 
 export const checkValidity = (value, rules) => {
   console.log('checking validity')

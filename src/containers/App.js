@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Form from './Form/Form';
 import Success from './Success';
-import { Switch, Redirect, Route } from 'react-router';
+import { Switch, Route } from 'react-router';
 
 function App() {
 	return (
