@@ -154,43 +154,45 @@ const Form = () => {
 	return (
 		<div>
 			{formInvalid ? displayError : null}
+
 			<form onSubmit={submitHandler}>
-				<label htmlFor='name'>Your name:</label>
-				<br />
+				<h3>Create account</h3>
+				<label htmlFor='name'>Your name</label>
+
 				<input
 					type='text'
 					name='name'
 					value={name.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
-				<br />
-				<label htmlFor='email'>Email:</label>
-				<br />
+
+				<label htmlFor='email'>Email</label>
+
 				<input
 					type='email'
 					name='email'
 					value={email.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
-				<br />
-				<label htmlFor='password'>Password:</label>
-				<br />
+
+				<label htmlFor='password'>Password</label>
+
 				<input
 					type='password'
 					name='password'
 					value={password.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
-				<br />
-				<label htmlFor='repeatPassword'>Repeat password:</label>
-				<br />
+
+				<label htmlFor='repeatPassword'>Re-enter password</label>
+
 				<input
 					type='password'
 					name='repeatPassword'
 					value={repeatPassword.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
-				<br />
+
 				<button type='submit'>Submit</button>
 			</form>
 		</div>
